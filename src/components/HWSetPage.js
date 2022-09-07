@@ -1,7 +1,7 @@
 import {React,useState,useEffect} from 'react';
 import LoginPage from './LoginPage';
 import {account_info} from './LoginPage'
-
+import NavBar from './NavBar';
   
 let HardwareArray = [
   {id: 0,capacity:"",availability:""},
@@ -18,6 +18,9 @@ let projectsArray = [
 
 function HWSetPage(){
 
+    let userID = localStorage.getItem('userID')
+
+
     const [checkOut,setCheckout] = useState(new Array(HardwareArray.length).fill(0))
     const [checkIn,setCheckIn] = useState(new Array(HardwareArray.length).fill(0))
 
@@ -33,7 +36,7 @@ function HWSetPage(){
       console.log(account_info.username)
       getProjects();      
       refreshHardwareArray();
-      console.log(account_info.username)
+      console.log(localStorage.getItem('userID'))
     },[]);
 
 
@@ -53,6 +56,7 @@ function HWSetPage(){
                 ) 
                 .then(data => { 
                   getProjects()
+                  console.log(data)
                   console.log("Success")
                 }).catch(error => {
                   getProjects()
@@ -354,6 +358,8 @@ function HWSetPage(){
 
 	return(
 			<div>
+        <NavBar/>
+
         Current user is {account_info.username}
         {displayCreateProject()}
 				{displayHardware()}

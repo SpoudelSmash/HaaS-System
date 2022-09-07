@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <Router>
-        <Tabs/>
+        {/* <Tabs/> */}
         <Routes>
           <Route exact path='/' element={<LoginPage/>}/>
 
